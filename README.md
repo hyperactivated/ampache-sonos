@@ -18,16 +18,16 @@ You should now have a sub-directory under your ampache directory called ampache-
 Follow the instructions at http://musicpartners.sonos.com/node/134 to add your ampache instance as a sonos music service, you will need to use the following values:
 
 Endpoint URL: 
-http://<your.server>/<ampache-path>/ampache-sonos/SonosAPI.php
+http://&lt;your.server&gt;/&lt;ampache-path&gt;/ampache-sonos/SonosAPI.php
 
 Secure Endpoint URL: 
-https://<your.server>/<ampache-path>/ampache-sonos/SonosAPI.php
+https://&lt;your.server&gt;/&lt;ampache-path&gt;/ampache-sonos/SonosAPI.php
 
 Authentication SOAP header policy: 
 Session ID
 
 Presentation map (optional): 
-Version: 1 Type: http://<your.server>/<ampache-path>/ampache-sonos/presentationMap.xml
+Version: 1 Type: http://&lt;your.server&gt;/&lt;ampache-path&gt;/ampache-sonos/pMap.xml
 
 Capabilities:
 Search
