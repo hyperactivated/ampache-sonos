@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Presentation>
+	<PresentationMap type="Search">
+	    <Match>
+	        <SearchCategories>
+	            <Category mappedId="artist" id="artists"/>
+	            <Category mappedId="album" id="albums"/>
+	            <Category mappedId="track" id="tracks"/>
+	        </SearchCategories>
+	    </Match>
+	</PresentationMap>
+	<PresentationMap type="DisplayType">
+	  <DisplayType id="searchResult">
+	    <DisplayMode>GRID</DisplayMode>
+	  </DisplayType>
+	  <DisplayType id="artistAlbums">
+	  	<DisplayMode>GRID</DisplayMode>
+	  </DisplayType>
+	  <DisplayType id="genericGrid">
+	  	<DisplayMode>GRID</DisplayMode>
+	  </DisplayType>
+	</PresentationMap>
+</Presentation>
