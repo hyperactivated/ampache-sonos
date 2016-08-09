@@ -317,7 +317,12 @@ class SonosAPI
         $item['displayType'] = 'searchResult';
         $item['id'] = 'artist:'.$artist->id;
         $item['authrequired'] = 1;
-        $item['genre'] = 'Unknown';
+        foreach ($artist->tags as $tag) {
+        	if ($item['genre'] != '') {
+        		$item['genre'] .= ', ';
+        	}
+        	$item['genre'] .= $tag['name'];
+        }
         $item['albumArtURI'] = Art::url($artist_id, 'artist', $this->sessionid);
 
         return $item;
@@ -371,8 +376,14 @@ class SonosAPI
         $item['displayType'] = 'searchResult';
         $item['id'] = 'album:'.$album->id;
         $item['authrequired'] = 1;
-        $item['genre'] = 'Unknown';
+        foreach ($album->tags as $tag) {
+        	if ($item['genre'] != '') {
+        		$item['genre'] .= ', ';
+        	}
+        	$item['genre'] .= $tag['name'];
+        }
         $item['albumArtURI'] = Art::url($album_id, 'album', $this->sessionid);
+        $item['canPlay'] = true;
 
         return $item;
     }
@@ -490,7 +501,6 @@ class SonosAPI
 $server = new SoapServer('Sonos.wsdl', array('cache_wsdl' => 0));
 $server->setClass('SonosAPI');
 
-ob_start();
 try{
     $server->handle();
 } catch (Exception $e) {
@@ -512,33 +522,4 @@ try{
     
     $server->fault($e->getMessage(), $errorId2msgId[$e->getMessage()] . 
                    ' ('.$e->getCode().': '.$e->getFile().':'.$e->getLine().')');
-    // $server->fault ends processing, so this line is never reached.
 }
-
-$response = ob_get_contents();
-$size = strlen($response);
-$sizemsg = "$size bytes";
-
-// Encode long responses using GZIP
-// KLUDGE: This appears to be quite broken...
-if (0) {
-    if (function_exists("gzencode") && strpos($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip') !== false) {
-        if ( strpos($_SERVER['HTTP_ACCEPT_ENCODING'], 'x-gzip') !== false) {
-            $encoding = 'x-gzip';
-        } else {
-            $encoding = 'gzip';
-        }
-        if ($size > 2048) {
-            $contents = gzencode($response, 9);
-            $gzsize = strlen($contents);
-            if ($gzsize + 50 < $size) {
-                ob_end_clean();
-                header('Content-Encoding: '.$encoding);
-                print($contents);
-                $percent=number_format($gzsize/$size*100,2);
-                $sizemsg = "$size bytes gzipped to $gzsize bytes = $percent%";
-            }
-        }
-    }
-}
-ob_flush();
