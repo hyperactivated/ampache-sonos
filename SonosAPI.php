@@ -1,13 +1,13 @@
 <?php
 
+define('NO_SESSION','1');
+require_once '../lib/init.php';
+
 // Prevent anything other than POST
 if ($_SERVER['REQUEST_METHOD'] != 'POST') {
     echo "<br>" . T_('This service is for use by Sonos products only.')."</br>\n";
     exit;
 }
-
-define('NO_SESSION','1');
-require_once '../lib/init.php';
 
 // Sonos API, see documentation at http://musicpartners.sonos.com/?q=docs
 
