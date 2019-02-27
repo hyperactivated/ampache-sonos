@@ -4,9 +4,10 @@ Enables the configuration of an ampache instance as a SONOS music service.
 Note: This is highly experimental, not guaranteed to work and may change at any time
 
 ## Requirements
-- A configured ampache installation with HTTPS enabled (and possibly needs to be accessible to the internet)
+- A configured ampache (https://github.com/ampache/ampache) installation with HTTPS enabled (and possibly needs to be accessible to the internet)
 - A user account with streaming and API access permissions
-- The PHP SOAP package: https://secure.php.net/manual/en/soap.installation.php
+- The PHP SOAP package: https://secure.php.net/manual/en/book.soap.php
+- The PHP GetText package: https://secure.php.net/manual/en/book.gettext.php
 
 ## Installation
 1. Open ampache base directory e.g. cd /srv/http/ampache
